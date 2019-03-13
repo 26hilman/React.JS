@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import Header from './component/Header';
+
 import Footer from './component/Footer';
 import About from './component/About';
 
-class AppHome extends Component {
-    render() {
+import { Redirect } from 'react-router-dom';
+
+const AppHome = props =>{
+    const is_login = JSON.parse(localStorage.getItem("is_login"));
+  
+    if (is_login === null){
+      return <Redirect to={{pathname: "/signin"}}/>;
+    }
+  else {
         return (
             <div className="App">
-              <Header />
+              
               <About />
               <Footer />
             </div>
